@@ -1,42 +1,47 @@
+---
 import Layout from '../layouts/Layout.astro'
 import Breadcrumb from '../components/shared/Breadcrumb.astro'
 ---
 
 <Layout title="Codini">
   <Breadcrumb />
-  <h1 class=" flex items-center justify-center mt-11 text-black font-bold text-3xl">Contactános</h1>
-
-  <div class="flex items-center justify-center min-h-screen  pt-0 mt-0">
-    <form action="#" class=" flex flex-col items-center w-full max-w-md">
+  <h1
+    class="flex items-center
+justify-center mt-8 text-black font-bold text-3xl"
+  >
+    Contactános
+  </h1>
+  <div class="flex justify-center pt-0 mt-0">
+    <form action="#" class="flex flex-col items-center w-full max-w-md">
       <label class="sr-only" for="nombre">Name</label>
       <input
-        class="w-full rounded-lg p-3 text-sm bg-gray-200 mt-10"
+        class="w-full rounded-lg p-3
+text-sm bg-gray-200 mt-10"
         placeholder="Nombre completo:"
         type="text"
         id="name"
       />
-
       <label class="sr-only" for="email">Email</label>
       <input
-        class="w-full rounded-lg p-3 text-sm bg-gray-200 mt-10"
+        class="w-full
+rounded-lg p-3 text-sm bg-gray-200 mt-10"
         placeholder="Dirección email:"
         type="email"
         id="email"
       />
-
       <textarea
-        class="w-full rounded-lg p-3 text-sm bg-gray-200 mt-10"
+        class="w-full rounded-lg p-3 text-sm
+bg-gray-200 mt-10"
         placeholder="Comentario:"
         rows="8"
         id="message"></textarea>
-
       <button
         type="submit"
-        class="inline-block w-full rounded-lg bg-green-section px-5 py-3 font-medium text-white sm:w-auto mt-10"
+        class="inline-block w-full rounded-lg bg-green-section
+px-5 py-3 font-medium text-white sm:w-auto mt-10 mb-8"
       >
         Continuar
       </button>
     </form>
   </div>
-
-
+</Layout>

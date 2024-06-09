@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Detail from '../components/como-comprar/Detail.astro'
+
+const details = [
+  {
+    title: '¿Cómo comprar en la Tienda Online CODINI?',
+    content: `
+      1) Elegí tus productos <br />
+      Buscá el producto deseado desde el cuadro de búsqueda o por categoría en
+      la página principal de la Tienda Online. Podrás visualizar el producto, con
+      sus características y atributos. Una vez que seleccionaste tu artículo clickeá
+      el botón “COMPRAR”. Tu producto se agrega al carrito de compra, clickeá "IR
+      AL CARRITO DE COMPRAS" y "COMPRAR". Te solicita que te registres para completar
+      tu operación. 2) Registración: Completá tus datos personales Ingresá tu correo
+      electrónico y completá tus datos personales para generar tu registración
+      por primera y única vez. Luego cuando ingreses para futuras compras ya estarás
+      registrado! 3) Carrito de Compras Aquí podrás visualizar el listado de productos
+      pre-seleccionados hasta el momento. Podés seguir comprando, o bien cerrar
+      tu compra: selecciona el metodo de entrega y continuar. Podrás visualizar
+      el resumen de tu orden
+    `,
+  },
+  {
+    title: '¿Cómo comprar en la Tienda Online CODINI?',
+    content: `
+      1) Elegí tus productos <br />
+      Buscá el producto deseado desde el cuadro de búsqueda o por categoría en
+      la página principal de la Tienda Online. Podrás visualizar el producto, con
+      sus características y atributos. Una vez que seleccionaste tu artículo clickeá
+      el botón “COMPRAR”. Tu producto se agrega al carrito de compra, clickeá "IR
+      AL CARRITO DE COMPRAS" y "COMPRAR". Te solicita que te registres para completar
+      tu operación. 2) Registración: Completá tus datos personales Ingresá tu correo
+      electrónico y completá tus datos personales para generar tu registración
+      por primera y única vez. Luego cuando ingreses para futuras compras ya estarás
+      registrado! 3) Carrito de Compras Aquí podrás visualizar el listado de productos
+      pre-seleccionados hasta el momento. Podés seguir comprando, o bien cerrar
+      tu compra: selecciona el metodo de entrega y continuar. Podrás visualizar
+      el resumen de tu orden
+    `,
+  },
+]
+---
+
+<Layout title="Codini">
+  <h1
+    class="flex items-center justify-center mt-11 text-black font-bold text-3xl"
+  >
+    ¿Cómo comprar?
+  </h1>
+  <main>
+    {
+      details.map((detail, index) => (
+        <Detail title={detail.title} description={detail.content} />
+      ))
+    }
+  </main>
+</Layout>
