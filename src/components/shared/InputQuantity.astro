@@ -1,0 +1,30 @@
+<div>
+  <label for="Quantity" class="sr-only"> Quantity </label>
+
+  <div class="flex items-center rounded border border-gray-200">
+    <button
+      type="button"
+      id="decrease-quantity"
+      class="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+    >
+      &minus;
+    </button>
+
+    <input
+      type="number"
+      id="quantity"
+      value="1"
+      min="1"
+      max="20"
+      class="h-10 w-16 border-transparent text-center no-spinner sm:text-sm text-gray-secondary"
+    />
+
+    <button
+      type="button"
+      id="increase-quantity"
+      class="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+    >
+      &plus;
+    </button>
+  </div>
+</div>

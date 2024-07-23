@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import Breadcrumb from '../../components/shared/Breadcrumb.astro'
+import InputQuantity from '../../components/shared/InputQuantity.astro'
 import { getProducts, getProductBySlug } from '../../utils/products'
 
 export async function getStaticPaths() {
@@ -45,29 +46,33 @@ const description = product.description.split(/\n\s*\n/)
             {product.name ? product.name : product.nombre}
           </h1>
 
+          <div class="flex items-end mb-2">
+            <p>
+              <span
+                class=`text-3xl font-bold text-gray-secondary font-bold ${product.discount && 'hidden'}`
+                >{product.price * (product.discount / 100)}</span
+              >
+              <span
+                class="text-2xl text-gray-secondary font-bold ${!product.discount && 'line-through'}"
+                >${product.price.toLocaleString('es-ES')}</span
+              >
+            </p>
+          </div>
+
           <span
             class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-sm text-purple-700"
           >
             {product.category}
           </span>
+
           <div
             class="mt-2 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0"
           >
-            <div class="flex items-end">
-              <p>
-                <span
-                  class=`text-3xl font-bold text-gray-secondary font-bold ${product.discount && 'hidden'}`
-                  >{product.price * (product.discount / 100)}</span
-                >
-                <span
-                  class="text-2xl text-gray-secondary font-bold ${!product.discount && 'line-through'}"
-                  >${product.price}</span
-                >
-              </p>
-            </div>
+            <InputQuantity />
 
             <button
               type="button"
+              id="add-to-cart"
               class="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-orange-section bg-none px-8 py-2.5 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-blue-section gap-2"
             >
               <img src="/svgs/cart-white.svg" />
@@ -81,17 +86,57 @@ const description = product.description.split(/\n\s*\n/)
             <a
               href="#"
               title=""
-              class="py-4 text-sm font-medium text-gray-secondary"
+              class="py-4 text-sm font-bold text-gray-secondary"
             >
               Descripción
             </a>
           </div>
 
           <div class="flow-root mt-4">
-            {description.map((desc: string) => <p class="text-gray-secondary" >{desc}</p>)}
+            {
+              description.map((desc: string) => (
+                <p class="text-gray-secondary text-sm">{desc}</p>
+              ))
+            }
           </div>
         </div>
       </div>
     </div>
   </main>
+
+  <script define:vars={{ product }}>
+    const btn = document.getElementById('add-to-cart')
+    const decreaseBtn = document.getElementById('decrease-quantity')
+    const increaseBtn = document.getElementById('increase-quantity')
+    const quantityInput = document.getElementById('quantity')
+
+    decreaseBtn?.addEventListener('click', () => {
+      if (quantityInput.value > 1) {
+        quantityInput.value = Number(quantityInput.value) - 1
+      }
+    })
+
+    increaseBtn?.addEventListener('click', () => {
+      if (quantityInput.value < 20) {
+        quantityInput.value = Number(quantityInput.value) + 1
+      }
+    })
+
+    btn?.addEventListener('click', () => {
+      const quantity = quantityInput.value
+      let cart = JSON.parse(localStorage.getItem('cart')) || []
+
+      const existingProductIndex = cart.findIndex(
+        (item) => item.product.id === product.id
+      )
+
+      if (existingProductIndex > -1) {
+        cart[existingProductIndex].quantity += Number(quantity)
+      } else {
+        cart.push({ product, quantity: Number(quantity) })
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart))
+    })
+  </script>
 </Layout>

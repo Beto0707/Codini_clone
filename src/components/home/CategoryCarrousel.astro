@@ -24,11 +24,11 @@ const imgs = [
 ]
 ---
 
-<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-4">
+<div class="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-4">
   {
     imgs.map((item) => (
       <a
-        class="relative overflow-hidden bg-gray-200 rounded-lg aspect-w-16 aspect-h-9 max-w-64"
+        class="relative overflow-hidden bg-gray-200 rounded-lg aspect-w-16 aspect-h-9 max-w-64 mx-auto"
         href={item.url}
       >
         <img src={item.img} alt="" class="object-cover w-full h-full" />
